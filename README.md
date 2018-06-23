@@ -9,6 +9,10 @@ docker run --rm -v ~/.kube/config:/root/.kube/config dwdraju/kubectl-docker kube
 
 ##### Gitlab CI/CD
 ```
-echo $KUBE_CONFIG | base64 -d > ${HOME}/.kube/config
-kubectl get pods
+get-pods:
+  stage: deploy
+  image: dwdraju/kubectl-docker
+  script:
+    - echo $KUBE_CONFIG | base64 -d > ${HOME}/.kube/config
+    - kubectl get pods
 ```
